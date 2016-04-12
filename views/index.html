@@ -2,7 +2,7 @@
 <html ng-app="app">
 
 <head>
-  <title>coder-camps-js</title>
+  <title>IMDB Clone</title>
   <meta charset="utf-8">
   <base href="/" />
   <link rel="stylesheet" href="/scripts/bootstrap/dist/css/bootstrap.min.css">
@@ -11,12 +11,15 @@
 </head>
 
 <body>
-  <div>
+  <div class="container well">
     <a ui-sref="Home">Home</a>
+    <span class="space"></span>
     <a ui-sref="Add Movie">Add</a>
   </div>
-
-  <ui-view></ui-view>
+  <div class="container">
+    <ui-view></ui-view>
+    
+  </div>
 
   <script src="/scripts/angular/angular.min.js"></script>
   <script src="/scripts/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -30,7 +33,6 @@
   <script src="/js/Services/MovieServices.js"></script>
   <script src="/js/Services/UserService.js"></script>
   <script src="/js/Controllers/HomeController.js"></script>
-  <script src="/js/Controllers/MovieController.js"></script>
   <script src="/js/Controllers/MovieAddController.js"></script>
   <script src="/js/Controllers/MovieUpdateController.js"></script>
   <script src="/js/Controllers/UserLoginController.js"></script>

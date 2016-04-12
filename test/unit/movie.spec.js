@@ -1,6 +1,6 @@
 "use strict";
 let should = require('should');
-let Movie = require('./model').Movie;
+let Movie = require('../Movie/model').Movie;
 
 describe('Movie Model', () => {
   it('Should make Title, Director and imgURL true', (done) => {
