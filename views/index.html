@@ -10,14 +10,13 @@
   <link rel="stylesheet" href="/css/site.css"/>
 </head>
 
-<body>
+<body ng-controller="GlobalController as global">
   <div class="container well">
     <ul>
       <li><a ui-sref="Home"><span class="glyphicon glyphicon-home"></span></a></li>
 
-      <li style="float:right"><a ui-sref="Login">login</a></li>
-      <li style="float:right"><a ui-sref="Register">register</a></li>
-
+      <li style="float:right" ng-show="!global.status._id"><a ui-sref="Login">login</a></li>
+      <li style="float:right" ng-show="global.status._id"><a ng-click="global.logout()">logout</a></li>
     </ul>
   </div>
   <div class="container">
@@ -36,6 +35,7 @@
   <script src="/js/Services/AuthInterceptor.js"></script>
   <script src="/js/Services/MovieServices.js"></script>
   <script src="/js/Services/UserService.js"></script>
+  <script src="/js/controllers/GlobalController.js"></script>
   <script src="/js/Controllers/HomeController.js"></script>
   <script src="/js/Controllers/MovieAddController.js"></script>
   <script src="/js/Controllers/MovieUpdateController.js"></script>

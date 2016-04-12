@@ -5,7 +5,8 @@ namespace app.controllers {
 
     constructor(
       private MovieService: app.Services.MovieService,
-      private UserService: app.Services.UserService
+      private UserService: app.Services.UserService,
+      private $state: ng.ui.IStateService
     ){
       this.movies = MovieService.getAll();
       this.user = UserService.status;
