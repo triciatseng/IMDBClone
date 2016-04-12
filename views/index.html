@@ -12,13 +12,17 @@
 
 <body>
   <div class="container well">
-    <a ui-sref="Home">Home</a>
-    <span class="space"></span>
-    <a ui-sref="Add Movie">Add</a>
+    <ul>
+      <li><a ui-sref="Home"><span class="glyphicon glyphicon-home"></span></a></li>
+
+      <li style="float:right"><a ui-sref="Login">login</a></li>
+      <li style="float:right"><a ui-sref="Register">register</a></li>
+
+    </ul>
   </div>
   <div class="container">
     <ui-view></ui-view>
-    
+
   </div>
 
   <script src="/scripts/angular/angular.min.js"></script>
