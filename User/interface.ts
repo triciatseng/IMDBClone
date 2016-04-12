@@ -4,7 +4,7 @@ namespace app.i {
         email: string;
         password: string;
         name: string;
-
-        comments?: Array <string>
+        movies: Array <string>;
+        comments?: Array <string>;
     }
 }

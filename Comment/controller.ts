@@ -1,8 +1,9 @@
 import * as mongoose from 'mongoose';
 import * as express from 'express';
 import {ICommentModel} from './model';
+import {IMovieModel} from '../Movie/model';
 
-export function controller(comment: mongoose.Model<ICommentModel>){
+export function controller(comment: mongoose.Model<ICommentModel>, movie: mongoose.Model<IMovieModel>){
   return{
     create: create,
     remove: remove
