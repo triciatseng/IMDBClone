@@ -16,7 +16,7 @@ export function controller(Movie: mongoose.Model<IMovieModel>){
       .populate('user','name')
       .exec((err,movies) => {
         if (err) return next(err);
-        json.res(movies);
+        res.json(movies);
       });
   }
 
@@ -50,5 +50,5 @@ export function controller(Movie: mongoose.Model<IMovieModel>){
       res.json({message: 'This movie entry has been deleted!'});
     });
   }
-  
+
 }
