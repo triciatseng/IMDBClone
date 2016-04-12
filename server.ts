@@ -10,6 +10,8 @@ const app = express();
 
 require('./Movie/model');
 require('./User/model');
+require('./Comment/model');
+
 mongoose.connect('mongodb://localhost/IMDBClone',(err) => {
   if (err) console.log(err);
   else console.log('Connected to mongodb://localhost/IMDBClone');
@@ -34,6 +36,7 @@ app.use('/scripts', express.static('bower_components'));
 
 app.use('/api/v1/users', require('/User/routes'));
 app.use('/api/v1/movies', require ('./Movie/routes'));
+app.use('/api/v1/comments', require('/Comment/routes'));
 
 app.get('/*', function(req, res, next) {
   if (/.js|.html|.css|templates|js|scripts/.test(req.path) || req.xhr) {
