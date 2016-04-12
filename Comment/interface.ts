@@ -1,6 +1,6 @@
 namespace app.i{
   export interface IComment{
-    _id: string;
+    _id: any;
     name: string;
     message: string;
     datePosted: number;

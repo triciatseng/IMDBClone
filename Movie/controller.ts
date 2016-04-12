@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose';
 import * as express from 'express';
 import {IMovieModel} from './model';
+import {ICommentModel} from '../Comment/model';
 
 export function controller(Movie: mongoose.Model<IMovieModel>,Comment: mongoose.Model<ICommentModel>){
   return{
