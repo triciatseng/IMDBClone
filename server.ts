@@ -4,7 +4,15 @@ import favicon = require('serve-favicon');
 import logger = require('morgan');
 import cookieParser = require('cookie-parser');
 import bodyParser = require('body-parser');
+import mongoose = require('mongoose');
+
 const app = express();
+
+require('./Movie/model');
+mongoose.connect('mongodb://localhost/IMDBClone',(err) => {
+  if (err) console.log(err);
+  else console.log('Connected to mongodb://localhost/IMDBClone');
+});
 
 // view engine setup
 app.set('views', './views');
