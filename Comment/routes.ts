@@ -5,7 +5,7 @@ import {Movie} from '../Movie/model'
 import {controller} from './controller';
 
 const router = express.Router();
-const ctrl = controller(Movie, Comment);
+const ctrl = controller(Comment, Movie);
 const auth = jwt({
   userProperty: 'payload',
   secret: process.env.JWT_SECRET
