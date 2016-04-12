@@ -6,7 +6,8 @@ let movieSchema = new mongoose.Schema({
   title: {type: String, required: true},
   director: {type: String, required: true},
   imgURL: {type: String, required: true},
-  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}
+  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
+  comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });
 
 export let Movie = mongoose.model<IMovieModel>('Movie',movieSchema);

@@ -14,12 +14,12 @@ router.get('/',ctrl.getAll);
 router.get('/:id',ctrl.getOne);
 
 //POST: '/api/v1/movies'
-router.post('/',ctrl.create);
+router.post('/',auth,ctrl.create);
 
 //PUT: '/api/v1/movies/:id'
-router.put('/:id',ctrl.update);
+router.put('/:id',auth,ctrl.update);
 
 //DELETE: '/api/v1/movies/:id'
-router.delete('/:id',ctrl.remove);
+router.delete('/:id',auth,ctrl.remove);
 
 export = router;

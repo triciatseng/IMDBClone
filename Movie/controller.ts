@@ -23,9 +23,13 @@ export function controller(Movie: mongoose.Model<IMovieModel>){
   function getOne(req:express.Request, res:express.Response, next:Function){
     Movie.findOne({_id:req.params.id})
       .populate('user','name')
+      .populate('comments','-movie')
       .exec((err,data) => {
         if (err) return next(err);
-        res.json(data);
+        Comment.populate(data.comments,{path:'user',select:'name',model:'User'}, (err, response) => {
+          if (err) return next(err);
+          res.json(data);
+        });
       });
   }
 

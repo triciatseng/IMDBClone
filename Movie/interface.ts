@@ -6,5 +6,6 @@ namespace app.i{
     imgURL: string;
 
     user: (string | IUser);
+    comments: [string | IComment];
   }
 }
