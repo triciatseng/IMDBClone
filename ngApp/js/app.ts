@@ -9,7 +9,7 @@ namespace app {
 
     $stateProvider.state('Home', {
       url: '/',
-      templateUrl: '/templates/home.pug',
+      templateUrl: '/templates/home.html',
       controller: 'HomeController',
       controllerAs: 'vm'
     }).state('Add Movie', {

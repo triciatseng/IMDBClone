@@ -34,9 +34,9 @@ app.use('/templates', require('./views/viewRoutes'));
 app.use(express.static('./ngApp'));
 app.use('/scripts', express.static('bower_components'));
 
-app.use('/api/v1/users', require('/User/routes'));
+app.use('/api/v1/users', require('./User/routes'));
 app.use('/api/v1/movies', require ('./Movie/routes'));
-app.use('/api/v1/comments', require('/Comment/routes'));
+app.use('/api/v1/comments', require('./Comment/routes'));
 
 app.get('/*', function(req, res, next) {
   if (/.js|.html|.css|templates|js|scripts/.test(req.path) || req.xhr) {
