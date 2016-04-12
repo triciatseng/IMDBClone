@@ -8,7 +8,7 @@ namespace app.Controllers{
       });
     }
 
-    constructor(private MovieService: app.Services.MovieService, private $state: ng.ui.IStateService, private $stateParams: ng.ui.IStateParamsService){
+    constructor(private MovieService: app.Services.MovieService, private CommentService: app.Services.CommentService, private $state: ng.ui.IStateService, private $stateParams: ng.ui.IStateParamsService){
       this.movie = MovieService.getOne($stateParams['id']);
     }
   }

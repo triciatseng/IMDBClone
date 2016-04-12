@@ -3,7 +3,7 @@ import * as express from 'express';
 import {Comment, ICommentModel} from './model';
 import {Movie, IMovieModel} from '../Movie/model';
 
-function create(req: express.Request, res: express.Response, next: Function) {
+export function create(req: express.Request, res: express.Response, next: Function) {
     let c = new Comment(req.body);
     c.datePosted = Date.now();
     c.user = req['payload']._id;
