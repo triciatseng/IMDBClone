@@ -1,0 +1,54 @@
+import * as mongoose from 'mongoose';
+import * as express from 'express';
+import {IMovieModel} from './model';
+
+export function controller(Movie: mongoose.Model<IMovieModel>){
+  return{
+    getAll: getAll,
+    getOne: getOne,
+    create: create,
+    update: update,
+    remove: remove
+  }
+
+  function getAll(req:express.Request, res:express.Response, next:Function){
+    Movie.find({})
+      .populate('user','name')
+      .exec((err,movies) => {
+        if (err) return next(err);
+        json.res(movies);
+      });
+  }
+
+  function getOne(req:express.Request, res:express.Response, next:Function){
+    Movie.findOne({_id:req.params.id})
+      .populate('user','name')
+      .exec((err,data) => {
+        if (err) return next(err);
+        res.json(data);
+      });
+  }
+
+  function create(req:express.Request, res:express.Response, next:Function){
+    let m = new Movie(req.body);
+    m.save((err,movie:IMovieModel) => {
+      if (err) return next(err);
+      res.json(movie);
+    });
+  }
+
+  function update(req:express.Request, res:express.Response, next:Function){
+    Movie.update({_id:req.params.id},req.body,(err,numRows) => {
+      if (err) return next(err);
+      res.json({message: 'This movie entry has been updated!'});
+    });
+  }
+
+  function remove(req:express.Request, res:express.Response, next:Function){
+    Movie.remove({_id:req.params.id},(err) => {
+      if (err) return next(err);
+      res.json({message: 'This movie entry has been deleted!'});
+    });
+  }
+  
+}
