@@ -36,6 +36,7 @@ export function controller(Movie: mongoose.Model<IMovieModel>,Comment: mongoose.
 
   function create(req:express.Request, res:express.Response, next:Function){
     let m = new Movie(req.body);
+    m.user = req['payload']._id;
     m.save((err,movie:IMovieModel) => {
       if (err) return next(err);
       res.json(movie);
@@ -43,16 +44,24 @@ export function controller(Movie: mongoose.Model<IMovieModel>,Comment: mongoose.
   }
 
   function update(req:express.Request, res:express.Response, next:Function){
-    Movie.update({_id:req.params.id},req.body,(err,numRows) => {
+    Movie.update({_id:req.params.id, user:req['payload']._id},req.body,(err,numRows:any) => {
       if (err) return next(err);
-      res.json({message: 'This movie entry has been updated!'});
-    });
+      if (numRows === 0) return next({message:'Unable to update movie entry!', status: 500});
+      res.json({message:'This movie entry has been updated!'});
+    })
   }
 
   function remove(req:express.Request, res:express.Response, next:Function){
-    Movie.remove({_id:req.params.id},(err) => {
+    Movie.findOneAndRemove({_id:req.params.id, user:req['payload']._id},(err,movie) => {
       if (err) return next(err);
-      res.json({message: 'This movie entry has been deleted!'});
+      if (movie) {
+          Comment.remove({movie:req.params.id}, (err) => {
+            if (err) return next(err);
+            res.json({message:'This movie entry has been deleted!'});
+          });
+      } else {
+        next({message:'Unable to delete movie entry.', status: 500});
+      }
     });
   }
 
