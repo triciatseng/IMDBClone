@@ -9,6 +9,7 @@ import mongoose = require('mongoose');
 const app = express();
 
 require('./Movie/model');
+require('./User/model');
 mongoose.connect('mongodb://localhost/IMDBClone',(err) => {
   if (err) console.log(err);
   else console.log('Connected to mongodb://localhost/IMDBClone');
@@ -31,6 +32,7 @@ app.use('/templates', require('./views/viewRoutes'));
 app.use(express.static('./ngApp'));
 app.use('/scripts', express.static('bower_components'));
 
+app.use('/api/v1/user', require('/User/routes'));
 app.use('/api/v1/movies', require ('./Movie/routes'));
 
 app.get('/*', function(req, res, next) {
