@@ -19,12 +19,12 @@ namespace app {
       controllerAs: 'vm'
     }).state('Movie Details', {
       url: '/details/:id',
-      templateUrl: '',
+      templateUrl: '/templates/details.html',
       controller: 'MovieDetailsController',
       controllerAs: 'vm'
     }).state('Movie Update', {
       url: 'update/:id',
-      templateUrl: '',
+      templateUrl: '/templates/update.html',
       controller: 'MovieUpdateController',
       controllerAs: 'vm'
     }).state('Login', {

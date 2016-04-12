@@ -7,6 +7,7 @@
   <base href="/" />
   <link rel="stylesheet" href="/scripts/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://bootswatch.com/cyborg/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/site.css"/>
 </head>
 
@@ -14,7 +15,7 @@
   <div class="container well">
     <ul>
       <li><a ui-sref="Home"><span class="glyphicon glyphicon-home"></span></a></li>
-
+      <li><a ui-sref="Add Movie" ng-show="global.status._id"><span class="glyphicon glyphicon-plus"></span></a></li>
       <li style="float:right" ng-show="!global.status._id"><a ui-sref="Login">login</a></li>
       <li style="float:right" ng-show="global.status._id"><a ng-click="global.logout()">logout</a></li>
     </ul>

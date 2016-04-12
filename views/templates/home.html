@@ -1,4 +1,24 @@
+<center>
+  <h1 style="color:white">the best movie database</h1>
+</center>
+<br />
 <div class="col-md-3"></div>
 <div class="col-md-6">
-Test</div>
+  <center>
+  <div ng-repeat="c in vm.movies">
+    <div class="box">
+      <div style="font-size:x-large">
+        <strong><a ui-sref="Movie Details({id:c._id})">{{c.title}}</a></strong>
+        <br />
+        <img ng-src="{{c.imgURL}}"  style="width: 40%;max-height: 100%;" />
+      </div>
+      <br />
+      <div style="text-align: right">
+        added by: <em>{{c.user.name}}</em>
+      </div>
+    </div>
+    <br />
+  </div>
+</div>
+</center>
 <div class="col-md-3"></div>
