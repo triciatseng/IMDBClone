@@ -14,7 +14,7 @@ namespace app {
       controllerAs: 'vm'
     }).state('Add Movie', {
       url: '/add',
-      templateUrl: '',
+      templateUrl: '/templates/addMovie.html',
       controller: 'MovieAddController',
       controllerAs: 'vm'
     }).state('Movie Details', {
