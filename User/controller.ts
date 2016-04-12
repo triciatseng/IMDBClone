@@ -1,14 +1,9 @@
 import * as express from 'express';
 import * as mongoose from 'mongoose';
-import { IUserModel } from './model';
+import { User, IUserModel } from './model';
 
-export function controller (User: mongoose.Model<IUserModel>) {
-    return {
-        login: login,
-        register: register,
-    }
 
-    function login(req: express.Request, res: express.Response, next: Function){
+    export function login(req: express.Request, res: express.Response, next: Function){
         if(!req.body.email) return next({message: 'An email is required to login, dummy.'});
         if(!req.body.password) return next({message: "Go home, you're drunk."});
 
@@ -24,7 +19,7 @@ export function controller (User: mongoose.Model<IUserModel>) {
             });
     }
 
-    function register(req: express.Request, res: express.Response, next: Function){
+    export function register(req: express.Request, res: express.Response, next: Function){
         let u = new User(req.body);
         u.hashPassword(req.body.password, (err, hash) => {
             if (err) return next (err);
@@ -34,4 +29,3 @@ export function controller (User: mongoose.Model<IUserModel>) {
             });
         });
     }
-}
