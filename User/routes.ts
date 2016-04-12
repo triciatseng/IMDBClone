@@ -1,12 +1,10 @@
 import * as express from 'express';
-import { controller } from './controller';
-import { User } from './model';
+import * as controller from './controller';
 
 const router = express.Router();
-const ctrl = controller(User);
 
-router.post('/login', ctrl.login);
+router.post('/login', controller.login);
 
-router.post('/register', ctrl.register);
+router.post('/register', controller.register);
 
 export = router;
