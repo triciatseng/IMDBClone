@@ -18,6 +18,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use('/templates', require('./views/viewRoutes'));
+
 app.use(express.static('./ngApp'));
 app.use('/scripts', express.static('bower_components'));
 
