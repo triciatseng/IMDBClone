@@ -15,7 +15,8 @@ let userSchema = new mongoose.Schema({
     password: {type: String},
     name: {type: String, required: true},
 
-    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
+    movies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Movie'}],
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });
 
 userSchema.method('hashPassword', function(password, done) {
