@@ -3,52 +3,40 @@ import * as express from 'express';
 import {ICommentModel} from './model';
 import {IMovieModel} from '../Movie/model';
 
-export function controller(comment: mongoose.Model<ICommentModel>, movie: mongoose.Model<IMovieModel>){
+export function controller(Comment: mongoose.Model<ICommentModel>, Movie: mongoose.Model<IMovieModel>){
   return{
-    getAll: getAll,
-    getOne: getOne,
     create: create,
-    update: update,
     remove: remove
   }
 
-  function getAll(req:express.Request, res:express.Response, next:Function){
-    comment.find({})
-      .populate('name','message')
-      .exec((err,comments) => {
-        if (err) return next(err);
-        res.json(comments);
+
+  function create(req: express.Request, res: express.Response, next: Function) {
+      let c = new Comment(req.body);
+      c.datePosted = Date.now();
+      c.user = req['payload']._id;
+      c.save((err, comment) => {
+          if (err) return next(err);
+          Movie.update({ _id: c.movie }, { $push: { 'comments': c._id } }, (err, result) => {
+              if (err) return next(err);
+              res.json(c);
+          });
       });
   }
 
-  function getOne(req:express.Request, res:express.Response, next:Function){
-    comment.findOne({_id:req.params.id})
-      .populate('name','message')
-      .exec((err,data) => {
-        if (err) return next(err);
-        res.json(data);
-      });
-  }
 
-  function create(req:express.Request, res:express.Response, next:Function){
-    let c = new comment(req.body);
-    c.save((err,comment:ICommentModel) => {
+  function remove(req: express.Request, res: express.Response, next: Function) {
+    Comment.findOneAndRemove({ _id: req.params.id, user: req['payload']._id }, (err, comment) => {
       if (err) return next(err);
-      res.json(comment);
-    });
-  }
-
-  function update(req:express.Request, res:express.Response, next:Function){
-    comment.update({_id:req.params.id},req.body,(err,numRows) => {
-      if (err) return next(err);
-      res.json({message: 'This comment has been updated!'});
-    });
-  }
-
-  function remove(req:express.Request, res:express.Response, next:Function){
-    comment.remove({_id:req.params.id},(err) => {
-      if (err) return next(err);
-      res.json({message: 'This comment has been deleted!'});
+      // if a comment was found and deleted... update the blog
+      if (comment) {
+        Movie.update({ comments: req.params.id }, { $pull: { comments: req.params.id } }, (err, numRows) => {
+          if (err) return next(err);
+          res.json({ message: "Your comment has been deleted!" });
+        });
+      // ... otherwise send an error message
+      } else {
+        next({ message: 'Could not delete the requested comment.', status: 500 });
+      }
     });
   }
 
