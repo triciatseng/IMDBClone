@@ -3,14 +3,14 @@ import * as express from 'express';
 import {ICommentModel} from './model';
 import {IMovieModel} from '../Movie/model';
 
-export function controller(comment: mongoose.Model<ICommentModel>, movie: mongoose.Model<IMovieModel>){
+export function controller(Comment: mongoose.Model<ICommentModel>, Movie: mongoose.Model<IMovieModel>){
   return{
     create: create,
     remove: remove
   }
 
   function create(req:express.Request, res:express.Response, next:Function){
-    let c = new comment(req.body);
+    let c = new Comment(req.body);
     c.datePosted = Date.now();
     c.save((err,comment:ICommentModel) => {
       if (err) return next(err);
@@ -19,9 +19,18 @@ export function controller(comment: mongoose.Model<ICommentModel>, movie: mongoo
   }
 
   function remove(req:express.Request, res:express.Response, next:Function){
-    comment.remove({_id:req.params.id},(err) => {
+    Comment.remove({_id:req.params.id},(err) => {
       if (err) return next(err);
-      res.json({message: 'This comment has been deleted!'});
+      // if a comment was found and deleted... update the blog
+      if (Comment) {
+        Movie.update({ comments: req.params.id }, { $pull: { comments: req.params.id } }, (err, numRows) => {
+          if (err) return next(err);
+          res.json({ message: "Your comment has been deleted!" });
+        });
+      // ... otherwise send an error message
+      } else {
+        next({ message: 'Could not delete the requested comment.', status: 500 });
+      }
     });
   }
 
