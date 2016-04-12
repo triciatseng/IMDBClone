@@ -1,9 +1,15 @@
 import * as express from 'express';
+import * as jwt from 'express-jwt';
 import {Movie} from './model';
+import {Comment} from '../Comment/model';
 import {controller} from './controller';
 
 const router = express.Router();
-const ctrl = controller(Movie);
+const ctrl = controller(Movie,Comment);
+const auth = jwt({
+  userProperty: 'payload',
+  secret: process.env.JWT_SECRET
+});
 
 //BASE ROUTE: '/api/v1/movies'
 
