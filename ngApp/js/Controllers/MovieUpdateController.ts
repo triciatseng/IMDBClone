@@ -4,7 +4,7 @@ namespace app.Controllers {
 
     public update(){
       this.MovieService.update(this.movie).then((res) => {
-        this.$state.go('MovieDetails',{id:this.movie._id});
+        this.$state.go('Movie Details',{id:this.movie._id});
       });
     }
 

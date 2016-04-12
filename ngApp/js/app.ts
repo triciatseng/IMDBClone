@@ -12,6 +12,21 @@ namespace app {
       templateUrl: '/templates/home.pug',
       controller: 'HomeController',
       controllerAs: 'vm'
+    }).state('Add Movie', {
+      url: '/add',
+      templateUrl: '',
+      controller: 'MovieAddController',
+      controllerAs: 'vm'
+    }).state('Movie Details', {
+      url: '/details/:id',
+      templateUrl: '',
+      controller: 'MovieDetailsController',
+      controllerAs: 'vm'
+    }).state('Movie Update', {
+      url: 'update/:id',
+      templateUrl: '',
+      controller: 'MovieUpdateController',
+      controllerAs: 'vm'
     });
 
     $urlRouterProvider.otherwise('/');
