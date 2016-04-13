@@ -17,6 +17,7 @@
       <li><a ui-sref="Home"><span class="glyphicon glyphicon-home"></span></a></li>
       <li><a ui-sref="Add Movie" ng-show="global.status._id"><span class="glyphicon glyphicon-plus"></span></a></li>
       <li style="float:right" ng-show="!global.status._id"><a ui-sref="Login">login</a></li>
+      <li style="float:right" ng-show="!global.status._id"><a href="/api/v1/users/auth/facebook" target="_self">login with fb</a></li>
       <li style="float:right" ng-show="global.status._id"><a ng-click="global.logout()">logout</a></li>
     </ul>
   </div>
