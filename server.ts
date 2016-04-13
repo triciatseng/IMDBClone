@@ -12,6 +12,8 @@ require('./Movie/model');
 require('./User/model');
 require('./Comment/model');
 
+require('./config/passport');
+
 mongoose.connect('mongodb://localhost/IMDBClone',(err) => {
   if (err) console.log(err);
   else console.log('Connected to mongodb://localhost/IMDBClone');

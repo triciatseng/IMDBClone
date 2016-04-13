@@ -3,48 +3,48 @@
 </center>
 <br />
 <div style="text-align: right">
-    <button ng-if="vm.movie.user._id === global.status._id" ui-sref="Update({id:vm.movie._id})" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></button>
+  <button ng-if="vm.movie.user._id === global.status._id" ui-sref="Update({id:vm.movie._id})" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></button>
+  <button ng-if="vm.movie.user._id === global.status._id" ng-click="vm.removeMovie()" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+
 </div>
-  <center>
-<div >
-  <img ng-src={{vm.movie.imgURL}}  style="width: 30%;max-height: 100%;" />
-  <br />
-  directed by: {{vm.movie.director}}
-  <br /><br />
-  added by: {{vm.movie.user.name}}
-  <br />
-  <br />
-</div>
+<center>
+  <div>
+    <img ng-src={{vm.movie.imgURL}} style="width: 30%;max-height: 100%;" />
+    <br /> directed by: {{vm.movie.director}}
+    <br />
+    <br /> added by: {{vm.movie.user.name}}
+    <br />
+    <br />
+  </div>
 </center>
 
 <h5>comments</h5>
 <div ng-show="global.status._id">
-<button ng-click="addComment = true" class="btn btn-info">post a comment</button>
-<br />
-<form ng-show="addComment" class="form-inline" ng-submit="vm.createComment(); addComment =false">
-<input type="hidden" required class="form-control" ng-model="vm.comment.name" placeholder="name" />
-<br />
-<textarea required class="form-control" ng-model="vm.comment.message" placeholder="message" rows="5"/></textarea>
-<br />
-<button type="submit" class="btn btn-primary">submit</button>
-<button ng-click="addComment = false" class="btn btn-danger">cancel</button>
-</form>
+  <button ng-click="addComment = true" class="btn btn-info">post a comment</button>
+  <br />
+  <form ng-show="addComment" class="form-inline" ng-submit="vm.createComment(); addComment =false">
+    <input type="hidden" required class="form-control" ng-model="vm.comment.name" placeholder="name" />
+    <br />
+    <textarea required class="form-control" ng-model="vm.comment.message" placeholder="message" rows="5" /></textarea>
+    <br />
+    <button type="submit" class="btn btn-primary">submit</button>
+    <button ng-click="addComment = false" class="btn btn-danger">cancel</button>
+  </form>
 </div>
 <br />
 <br />
 <br />
-  <div ng-repeat="c in vm.movie.comments">
-    <div class="widebox">
-      <div style="text-align: left">
-        <div style="text-align: right">
-          <button ng-click="vm.removeComment(c)" class="btn btn-danger" ng-if="c.user._id === global.status._id">x</button>
-        </div>
-        <strong>name:</strong> {{c.user.name}}
-        <br />
-        <strong>message:</strong> {{c.message}}
+<div ng-repeat="c in vm.movie.comments">
+  <div class="widebox">
+    <div style="text-align: left">
+      <div style="text-align: right">
+        <button ng-click="vm.removeComment(c)" class="btn btn-danger" ng-if="c.user._id === global.status._id">x</button>
       </div>
-      <br / />
+      <strong>name:</strong> {{c.user.name}}
+      <br />
+      <strong>message:</strong> {{c.message}}
     </div>
-    <br />
   </div>
+  <br />
+</div>
 </div>
