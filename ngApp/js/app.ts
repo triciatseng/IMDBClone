@@ -22,8 +22,8 @@ namespace app {
       templateUrl: '/templates/details.html',
       controller: 'MovieDetailsController',
       controllerAs: 'vm'
-    }).state('Movie Update', {
-      url: 'update/:id',
+    }).state('Update', {
+      url: '/update/:id',
       templateUrl: '/templates/update.html',
       controller: 'MovieUpdateController',
       controllerAs: 'vm'

@@ -3,7 +3,7 @@ import * as mongoose from 'mongoose';
 export interface ICommentModel extends app.i.IComment, mongoose.Document{}
 
 let commentSchema = new mongoose.Schema({
-  name: {type: String, required: true},
+  name: {type: String},
   message: {type: String, required: true},
   datePosted: {type: Number, required: true},
 
