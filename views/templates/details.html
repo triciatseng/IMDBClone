@@ -4,7 +4,16 @@
 <br />
 
   <center>
-<div class="widebox">
-  <!-- <img ng-src={{vm.movie.imgURL}} style="width: 75%;max-height: 100%;" /> -->
+<div >
+  <img ng-src={{vm.movie.imgURL}}  style="width: 30%;max-height: 100%;" />
+  <br />
+  <h1>{{vm.movie.title}}</h1>
+  <br />
+  directed by: {{vm.movie.director}}
+  <br /><br />
+  <button ng-if="vm.movie.user._id === global.status._id" class="btn btn-warning">edit</button>
+  <br />
+  <br />
+
 </div>
 </center>

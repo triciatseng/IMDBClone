@@ -1,6 +1,6 @@
 namespace app.Services {
   interface IMovieResource extends ng.resource.IResource<IMovieResource>,app.i.IMovie{}
-  interface IMovieClass extends ng.resource.IResourceClass<IMovieResource>{}
+  interface IMovieClass extends ng.resource.IResourceClass<IMovieResource>{update(params: Object, body: Object)}
 
   export class MovieService{
     private MovieResource: IMovieClass;
