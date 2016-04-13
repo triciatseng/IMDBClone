@@ -4,16 +4,16 @@ import {Comment, ICommentModel} from './model';
 import {Movie, IMovieModel} from '../Movie/model';
 
 export function create(req: express.Request, res: express.Response, next: Function) {
-    let c = new Comment(req.body);
-    c.datePosted = Date.now();
-    c.user = req['payload']._id;
-    c.save((err, comment) => {
-        if (err) return next(err);
-        Movie.update({ _id: c.movie }, { $push: { 'comments': c._id } }, (err, result) => {
-            if (err) return next(err);
-            res.json(c);
-        });
+  req.body.datePosted = Date.now();
+  req.body.rating = 0;
+  req.body.user = req['payload']._id;
+  Comment.create(req.body, (err, comment) => {
+    if (err) return next(err);
+    Movie.update({ _id: comment.movie }, { $push: { 'comments': comment._id } }, (err, result) => {
+      if (err) return next(err);
+      res.json(comment);
     });
+  });
 }
 
  export function remove(req:express.Request, res:express.Response, next:Function){

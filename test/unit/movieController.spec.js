@@ -23,7 +23,7 @@ afterEach((done) => {
 describe('controller', () => {
   describe('getAll()', () => {
     it('Should return an array of 3', (done) => {
-      
+
     })
   })
 })
