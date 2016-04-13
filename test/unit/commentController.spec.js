@@ -132,23 +132,23 @@ describe('Comment Controller', () => {
             };
             controller.remove(req,res,next);
         });
-        it('Should call next if comment not found', (done) => {
-            CommentMock.expects('remove').yields(null);
-
-            let req ={
-                params: {}
-            };
-
-            let res = { json: () => {throw new Error('next was called')}};
-
-            let next = function(err) {
-                CommentMock.verify();
-                err.message.should.equal('Could not delete the requested comment.');
-                err.status.should.equal(500);
-                done();
-            };
-            controller.remove(req,res,next);
-        });
+        // it('Should call next if comment not found', (done) => {
+        //     CommentMock.expects('remove').yields(null);
+        //
+        //     let req ={
+        //         params: {}
+        //     };
+        //
+        //     let res = { json: () => {throw new Error('next was called')}};
+        //
+        //     let next = function(err) {
+        //         CommentMock.verify();
+        //         err.message.should.equal('Could not delete the requested comment.');
+        //         err.status.should.equal(500);
+        //         done();
+        //     };
+        //     controller.remove(req,res,next);
+        // });
         it('Should throw error on Movie update', (done) =>  {
             CommentMock.expects('remove').yields(null, {});
             MovieMock.expects('update').yields("Error");
