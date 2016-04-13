@@ -6,5 +6,6 @@ namespace app.i {
         name: string;
         movies?: Array <string>;
         comments?: Array <string>;
+        facebook: {id:string, token: string};
     }
 }

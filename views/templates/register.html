@@ -1,21 +1,21 @@
 <center>
-      <h1 style="color:white">register</h1>
+  <h1 style="color:white">register</h1>
+  <br />
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <br />
+    <form class="form-inline" ng-submit="vm.register()">
+      <input required type="text" class="form-control" ng-model="vm.user.name" placeholder="name" />
       <br />
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
+      <input required type="email" class="form-control" ng-model="vm.user.email" placeholder="email" />
       <br />
-      <form class="form-inline" ng-submit="vm.register()">
-        <input required type="text" class="form-control" ng-model="vm.user.name" placeholder="name"/>
-        <br />
-        <input required type="email" class="form-control" ng-model="vm.user.email" placeholder="email"/>
-        <br />
-        <input required type="password" class="form-control" ng-model="vm.user.password" placeholder="password"/>
-        <br />
-        <br />
-        <button type="submit" class="btn btn-primary">sign up</button>
-        <br />
-        <br />
-      </form>
-    </center>
-    </div>
-    <div class="col-md-3"></div>
+      <input required type="password" class="form-control" ng-model="vm.user.password" placeholder="password" />
+      <br />
+      <br />
+      <button type="submit" class="btn btn-primary">sign up</button>
+      <br />
+      <br />
+    </form>
+</center>
+</div>
+<div class="col-md-3"></div>

@@ -4,7 +4,7 @@ namespace app.i{
     title: string;
     director: string;
     imgURL: string;
-
+    rating?: Array<number>;
     user: (string | IUser);
     comments: [string | IComment];
   }
